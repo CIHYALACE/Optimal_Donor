@@ -1,8 +1,9 @@
-import SharedLayout from "../sharedlayout/SharedLayout";
+import HeroSection from "../components/HeroSection";
 
 export default function HomePage() {
     return (
         <>
+            <HeroSection />
         </>
     )
 }
