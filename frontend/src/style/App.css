@@ -1,10 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.big-shoulders {
+.big-shoulders{
   font-family: "Big Shoulders", sans-serif;
 }
 
@@ -22,7 +16,7 @@
 
 .nav-link::after,
 .nav-link::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 2px;
@@ -36,77 +30,46 @@
 
 .nav-link:hover::after,
 .nav-link:hover::before {
-  transform: scaleX(1);
+transform: scaleX(1);
 }
 
-.program-card {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 65%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.program-card{
+overflow: hidden;
+position: relative;
+width: 100%;
+height: 65%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-.program-card img {
-  position: absolute; /* Allow smooth scaling within */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures proper image scaling */
-  transition: transform 0.3s ease-in-out;
+.program-card img{
+position: absolute; /* Allow smooth scaling within */
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures proper image scaling */
+transition: transform 0.3s ease-in-out;
 }
 
-.program-card img:hover {
-  transform: scale(1.1);
+.program-card img:hover{
+transform: scale(1.1);
 }
 
-p {
-  margin-bottom: 0;
+p{
+margin-bottom: 0;
 }
 
 @media (min-width: 992px) {
   .responsive-height {
     height: 50vh;
   }
+
 }
 
 @media (orientation: portrait) {
   .responsive-height-portrait {
-    height: 100vh;
-  }
-}
-
-.loader {
-  font-family: sans-serif;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100vh;
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-
-.loading-icon {
-  color: teal;
-  font-size: 2rem;
-  animation: animate 1.5s infinite;
-}
-
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(720deg);
+      height: 100vh;
   }
 }
