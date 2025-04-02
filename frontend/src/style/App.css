@@ -20,7 +20,7 @@
   position: absolute;
   width: 100%;
   height: 2px;
-  background: #f40006;
+  background: #198754;
   bottom: -5px;
   left: 0;
   transform: scaleX(0);
@@ -33,32 +33,24 @@
 transform: scaleX(1);
 }
 
-.program-card{
-overflow: hidden;
-position: relative;
-width: 100%;
-height: 65%;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.program-card img{
-position: absolute; /* Allow smooth scaling within */
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-object-fit: cover; /* Ensures proper image scaling */
+.hero-images{
 transition: transform 0.3s ease-in-out;
 }
 
-.program-card img:hover{
-transform: scale(1.1);
+.hero-images:hover{
+transform: scale(1.05);
 }
 
 p{
 margin-bottom: 0;
+}
+
+.big-shoulders{
+  font-family: "Big Shoulders", sans-serif;
+}
+
+.fs-0{
+  font-size: 3.5rem;
 }
 
 @media (min-width: 992px) {

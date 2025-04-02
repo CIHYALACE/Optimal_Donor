@@ -6,7 +6,7 @@ export default function Footer() {
           className="text-center text-lg-start text-white bg-dark">
           <section
             className="d-flex justify-content-between p-4"
-            style={{ backgroundColor: "#c10005" }}
+            style={{ backgroundColor: "#198754" }}
           >
             <div className="me-5">
               <span>Get connected with us on social networks:</span>

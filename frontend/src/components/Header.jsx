@@ -6,7 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function Header() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary position-sticky top-0 z-1 mb-lg-5">
+    <Navbar expand="lg" className="bg-body-tertiary position-sticky top-0 z-1 mb-lg-3">
       <Container>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Brand href="#home" className="font-weight-bold fs-3 fw-bold big-shoulders">
