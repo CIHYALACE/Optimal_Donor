@@ -7,13 +7,21 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'phone_number', 'picture']
-
+        fields = ["id", "username", "email", "phone_number"]
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    user = CustomUserSerializer()
+    user = CustomUserSerializer(required=False)
+
     class Meta:
         model = UserProfile
-        fields = ['id', 'user', 'bio', 'location', 'date_of_birth']
+        fields = ["id", "user", "bio", "location", "date_of_birth", "picture", "donated_campaigns"]
+
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user', None)
+        if user_data:
+            user_serializer = CustomUserSerializer(instance.user, data=user_data, partial=True)
+            if user_serializer.is_valid():
+                user_serializer.save()
+        return super().update(instance, validated_data)

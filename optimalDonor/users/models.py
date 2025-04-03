@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+# from core.models import Campaign
 
 
 class CustomUser(AbstractUser):
@@ -11,8 +12,6 @@ class CustomUser(AbstractUser):
                                         code='invalid_phone_number'
                                     )
                                 ])
-    picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    
     def __str__(self):
         return self.username
 
@@ -21,6 +20,8 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
+    picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    donated_campaigns = models.ManyToManyField('core.Campaign', related_name='campaign_donors', blank=True)    
     
     def __str__(self):
         return self.user.username
