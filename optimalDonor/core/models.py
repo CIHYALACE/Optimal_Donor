@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+# from users.models import CustomUser,UserProfile
 
 class Campaign(models.Model):
     active = 'active'
@@ -18,8 +18,9 @@ class Campaign(models.Model):
     raised_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     created_at = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField()
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='campaigns')
+    owner = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='campaigns')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=active)
+    donors = models.ManyToManyField('users.UserProfile', related_name='user_donations', blank=True)
 
     def __str__(self):
         return self.title
