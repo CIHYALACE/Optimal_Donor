@@ -1,7 +1,7 @@
 export default function HeroSection() {
   return (
     <>
-      <div className="hero vh-100 mt-4 mt-lg-0">
+      <div className="hero vh-100 mt-4 mt-lg-3">
         <div className="hero-content text-center d-flex flex-column flex-lg-row justify-content-center align-items-start">
           {/* left side */}
           <div className="d-none d-lg-flex flex-column justify-center align-items-end gap-5 gap-lg-0">

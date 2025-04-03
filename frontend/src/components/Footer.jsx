@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <div className="mt-5">
+      <div>
         <footer
           className="text-center text-lg-start text-white bg-dark">
           <section

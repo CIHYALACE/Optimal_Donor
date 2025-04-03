@@ -53,6 +53,16 @@ margin-bottom: 0;
   font-size: 3.5rem;
 }
 
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+  }
+  .card-registration .select-arrow {
+  top: 13px;
+  }
+
 @media (min-width: 992px) {
   .responsive-height {
     height: 50vh;
