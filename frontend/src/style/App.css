@@ -63,6 +63,18 @@ margin-bottom: 0;
   top: 13px;
   }
 
+  .link-effect {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #000;
+  }
+
+  .link-effect:hover {
+    transform: translateX(7px);
+    color: #198754;
+  }
+
 @media (min-width: 992px) {
   .responsive-height {
     height: 50vh;
