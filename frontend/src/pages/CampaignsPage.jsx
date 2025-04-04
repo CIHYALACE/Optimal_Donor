@@ -4,7 +4,7 @@ import CampaignsSection from "../components/CampaignsSection";
 export default function CampaignsPage() {
   return (
     <div className="container mt-5 mb-5">
-      <div className="col-7 mb-5">
+      <div className="col-12 col-md-7 mb-5">
         <h1 className="fs-bigger gidole-regular">
           Browse fundraisers by category
         </h1>

@@ -8,7 +8,7 @@ export default function Header() {
     <Navbar expand="lg" className="bg-body-tertiary position-sticky top-0 z-1">
       <Container>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Brand href="\" className="font-weight-bold fs-3 fw-bold big-shoulders">
+        <Navbar.Brand href="\" className="font-weight-bold fs-md-3 fw-bold big-shoulders">
           <img
             alt=""
             src="/donate.png"
