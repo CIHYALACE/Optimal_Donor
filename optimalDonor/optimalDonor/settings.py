@@ -113,12 +113,16 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = f"Optimal Donor <{os.getenv('EMAIL_HOST_USER')}>"
 
+# Optimal donor domain settings
+SITE_DOMAIN = "optimaldonor.com"
+SITE_NAME = "Optimal Donor"
 
 DJOSER = {
     "USER_ID_FIELD": "email",
     "LOGIN_FIELD": "email",
+    'DOMAIN':SITE_DOMAIN,
     'PASSWORD_RESET_CONFIRM_RETYPE':True,
     'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
@@ -129,6 +133,7 @@ DJOSER = {
     'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL':'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL':True,
+    "SITE_NAME": SITE_NAME,
     'SERIALIZERS': {
         'user_create': 'users.serializers.CustomUserSerializer',
         'user': 'users.serializers.CustomUserSerializer',
