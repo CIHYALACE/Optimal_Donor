@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import UserProfile from "../pages/UserProfile";
+import CampaignsPage from "../pages/CampaignsPage";
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/user/" element={<UserProfile/>} />
+        <Route path="/campaigns" element={<CampaignsPage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Route>
     </Routes>

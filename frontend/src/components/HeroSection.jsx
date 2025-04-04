@@ -41,7 +41,7 @@ export default function HeroSection() {
 
           <div className="d-flex flex-column justify-content-center align-items-center col-12 col-lg-6">
             <p className="pt-md-5 fs-5">#1 crowdfunding platform</p>
-            <h1 className="font-bold my-4 my-lg-3 px-3 px-lg-0 col-md-7">
+            <h1 className="font-bold my-4 my-lg-3 px-3 px-lg-0 col-md-7 gidole-regular">
               Alone we can do so little; Together we can do so much.
             </h1>
             <a href="#" className="btn btn-success col-5 col-md-4 my-lg-5 ">

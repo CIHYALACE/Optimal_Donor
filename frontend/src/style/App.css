@@ -1,6 +1,15 @@
-.big-shoulders{
+
+/* Fonts */
+.big-shoulders {
   font-family: "Big Shoulders", sans-serif;
 }
+
+.gidole-regular {
+  font-family: "Gidole", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* ************ */
 
 .responsive-height {
   height: 25vh;
@@ -45,12 +54,14 @@ p{
 margin-bottom: 0;
 }
 
-.big-shoulders{
-  font-family: "Big Shoulders", sans-serif;
-}
+/* font size */
 
 .fs-0{
   font-size: 3.5rem;
+}
+
+.fs-bigger{
+  font-size: 4rem;
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
@@ -59,21 +70,29 @@ margin-bottom: 0;
   padding-left: .75em;
   padding-right: .75em;
   }
-  .card-registration .select-arrow {
+.card-registration .select-arrow {
   top: 13px;
-  }
+}
 
-  .link-effect {
-    display: inline-flex;
-    align-items: center;
-    transition: transform 0.3s ease, color 0.3s ease;
-    color: #000;
-  }
+.link-effect {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #000;
+}
 
-  .link-effect:hover {
-    transform: translateX(7px);
-    color: #198754;
-  }
+.link-effect:hover {
+  transform: translateX(7px);
+  color: #198754;
+}
+
+.catigory-card {
+  border: 1px solid transparent;
+}
+
+.catigory-card:hover {
+  border: 1px solid black;
+}
 
 @media (min-width: 992px) {
   .responsive-height {

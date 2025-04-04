@@ -24,7 +24,7 @@ export default function Header() {
           <Nav className="ms-auto fw-bold">
             <Nav.Link className="nav-link" href="#home">Home</Nav.Link>
             <Nav.Link className="nav-link" href="#link">About</Nav.Link>
-            <Nav.Link className="nav-link" href="#link">Sponsors</Nav.Link>
+            <Nav.Link className={"nav-link"} href="/campaigns">Campaigns</Nav.Link>
             <Nav.Link className="nav-link" href="#link">Contact</Nav.Link>
             <NavLink className={"nav-link"}><i className="fa-solid fa-search fs-5 d-none d-lg-inline px-2"></i></NavLink>
             <NavLink className={"nav-link"} to="/login"><i className="fa-solid fa-user fs-5 d-none d-lg-inline px-2"></i></NavLink>
