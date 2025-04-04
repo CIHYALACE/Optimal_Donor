@@ -5,6 +5,8 @@ from django.core.validators import RegexValidator
 
 
 class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=255, blank=False, null=False)
     phone_number = models.CharField(blank=True, null=True, unique=True, max_length=11,
                     validators=[RegexValidator(
                                         regex=r'^01\d{9}$',
@@ -12,16 +14,20 @@ class CustomUser(AbstractUser):
                                         code='invalid_phone_number'
                                     )
                                 ])
+    picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    username = None
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name']# if u wanna add more ,do
+
     def __str__(self):
-        return self.username
+        return self.email
+    # return self.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    donated_campaigns = models.ManyToManyField('core.Campaign', related_name='campaign_donors', blank=True)    
-    
+
     def __str__(self):
-        return self.user.username
+        return self.user.email
