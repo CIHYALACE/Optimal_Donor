@@ -8,18 +8,21 @@ export default function CampaignsSection({name}) {
           image="/cancer_card.jpg"
           title="Medical Campaign 1"
           amount="$1000"
+          currentAmount="$500"
           link="#"
         />
         <Card4
           image="/cancer_card.jpg"
           title="Medical Campaign 2"
           amount="$2000"
+          currentAmount="$1000"
           link="#"
         />
         <Card4
           image="/cancer_card.jpg"
           title="Medical Campaign 3"
           amount="$3000"
+          currentAmount="$1500"
           link="#"
         />
       </div>
