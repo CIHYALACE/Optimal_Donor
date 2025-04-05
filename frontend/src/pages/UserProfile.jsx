@@ -8,7 +8,7 @@ import { SlInfo } from "react-icons/sl";
 export default function UserProfile() {
   return (
     <Container
-      className="d-flex justify-content-center align-items-center vh-100 my-2"
+      className="d-flex justify-content-center align-items-center py-5 my-2"
       style={{
         background: "linear-gradient(135deg,rgb(25, 135, 84),rgb(20, 43, 77))",
       }}
@@ -16,6 +16,7 @@ export default function UserProfile() {
       <Card
         className="p-4 rounded shadow-lg text-center"
         style={{
+          height:"90%",
           width: "580px",
           borderRadius: "20px",
           boxShadow: "0px 10px 30px inset rgba(0, 0, 0, 0.2)",
