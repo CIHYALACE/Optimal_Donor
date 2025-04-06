@@ -1,4 +1,3 @@
-
 /* Fonts */
 .big-shoulders {
   font-family: "Big Shoulders", sans-serif;
@@ -96,6 +95,61 @@ margin-bottom: 0;
 
 .catigory-card:hover {
   border: 1px solid black;
+}
+
+.card-carousel {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+  overflow: hidden;
+}
+
+.carousel-card {
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.card-slide {
+  background: transparent;
+  border: none;
+}
+
+.carousel-controls {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: static;
+  display: inline-block;
+  width: auto;
+  background-color: #6c757d;
+  border-radius: 50%;
+  padding: 0.8rem;
+}
+
+.custom-carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-carousel-btn:hover {
+  background-color: #e9ecef;
+}
+
+.custom-carousel-btn i {
+  color: #212529;
+  font-size: 1rem;
 }
 
 @media (min-width: 992px) {
