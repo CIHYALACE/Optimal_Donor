@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import Campaign
 
-@admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
-    list_display = ('title', 'goal_amount', 'raised_amount', 'created_at', 'end_date', 'owner', 'status')
-    search_fields = ('title',)
-    list_filter = ('status',)
-    ordering = ('-created_at',)
-    date_hierarchy = 'created_at'
+    list_display = ('title', 'owner', 'goal_amount', 'raised_amount', 'start_time', 'end_date', 'status')
+    search_fields = ('title', 'owner__username')
+    list_filter = ('status', 'category')
+    ordering = ('-start_time',)
+    date_hierarchy = 'start_time'
+    list_per_page = 20
