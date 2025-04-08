@@ -8,6 +8,7 @@ export default function HomePage() {
             <HeroSection />
             <Slider />
             <TopicsSection />
+            <TopicsSection />
         </>
     )
 }

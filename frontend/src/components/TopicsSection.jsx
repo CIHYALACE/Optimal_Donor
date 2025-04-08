@@ -47,8 +47,7 @@ export default function TopicsSection() {
                     <Card2 title={cardData[2].title} text={cardData[2].text} imgSrc={cardData[2].imgSrc} action={cardData[2].action} />
                     <Card2 title={cardData[3].title} text={cardData[3].text} imgSrc={cardData[3].imgSrc} action={cardData[3].action} />
                     <Card2 title={cardData[4].title} text={cardData[4].text} imgSrc={cardData[4].imgSrc} action={cardData[4].action} />
-                </div>
-                
+                </div>    
             </div>
         </>
     )
