@@ -12,7 +12,7 @@ export default function CampaignsPage() {
           People around the world are raising money for what they are passionate
           about.
         </p>
-        <a className="btn btn-success fw-bold p-2 px-4">Donate Now</a>
+        {/* <a className="btn btn-success fw-bold p-2 px-4">Donate Now</a> */}
       </div>
 
       <div className="d-flex justify-content-between align-items-center gap-1 mt-5">
