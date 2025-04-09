@@ -18,6 +18,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             phone_number=validated_data.get('phone_number')
         )
         user.set_password(validated_data['password'])
+        user.is_active = True
         user.save()
         return user
 
@@ -29,7 +30,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
-    
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
