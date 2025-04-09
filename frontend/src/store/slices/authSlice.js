@@ -7,16 +7,16 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${ENDPOINTS.AUTH.TOKEN}/`, credentials);
+      const response = await axios.post(ENDPOINTS.AUTH.TOKEN, credentials);
       // Store tokens in local storage
       localStorage.setItem('accessToken', response.data.access);
       localStorage.setItem('refreshToken', response.data.refresh);
       
       // Set default authorization header for all future requests
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+      axios.defaults.headers.common['Authorization'] = `JWT ${response.data.access}`;
       
       // Fetch user data
-      const userResponse = await axios.get(`${ENDPOINTS.USERS}/me/`);
+      const userResponse = await axios.get(ENDPOINTS.AUTH.ME);
       return { tokens: response.data, user: userResponse.data };
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : 'Login failed');
@@ -28,7 +28,7 @@ export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${ENDPOINTS.USERS}/`, userData);
+      const response = await axios.post(ENDPOINTS.AUTH.USERS, userData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : 'Registration failed');
@@ -63,11 +63,11 @@ export const refreshToken = createAsyncThunk(
     }
     
     try {
-      const response = await axios.post(`${ENDPOINTS.AUTH.REFRESH}/`, { refresh: refreshToken });
+      const response = await axios.post(ENDPOINTS.AUTH.REFRESH, { refresh: refreshToken });
       localStorage.setItem('accessToken', response.data.access);
       
       // Update authorization header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+      axios.defaults.headers.common['Authorization'] = `JWT ${response.data.access}`;
       
       return response.data;
     } catch (error) {
@@ -92,7 +92,7 @@ const initialState = {
 // Setup axios with stored token if it exists
 const token = localStorage.getItem('accessToken');
 if (token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  axios.defaults.headers.common['Authorization'] = `JWT ${token}`;
 }
 
 // Slice

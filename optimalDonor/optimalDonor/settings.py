@@ -37,7 +37,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-
+APPEND_SLASH=False
 # Application definition
 
 INSTALLED_APPS = [

@@ -23,7 +23,7 @@ class CampaignImageSerializer(serializers.ModelSerializer):
 
 
 class CampaignSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner = serializers.ReadOnlyField(source='owner.name')
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
     images = CampaignImageSerializer(many=True, read_only=True)
