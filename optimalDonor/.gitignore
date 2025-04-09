@@ -4,3 +4,4 @@ __pycache__/
 virtenv/
 .env
 migrations/
+virtenvoptimal/
