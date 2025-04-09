@@ -1,9 +1,29 @@
 import Card3 from "../components/Card3";
 import CampaignsSection from "../components/CampaignsSection";
+import { fetchCampaigns } from "../store/slices/campaignsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function CampaignsPage() {
+  const dispatch = useDispatch();
+  const { campaigns, loading, error } = useSelector(state => state.campaigns);
+  
+  useEffect(() => {
+    dispatch(fetchCampaigns());
+  }, [dispatch]);
+  
+  // Filter campaigns by category
+  const medicalCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Medical');
+  const educationCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Education');
+  const animalsCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Animals');
+  const businessCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Business');
+  const emergencyCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Emergency');
+  
   return (
     <div className="container mt-5 mb-5">
+      {loading && <div className="text-center"><div className="spinner-border" role="status"></div></div>}
+      {error && <div className="alert alert-danger">{error}</div>}
+      
       <div className="col-12 col-md-7 mb-5">
         <h1 className="fs-bigger gidole-regular">
           Browse fundraisers by category
@@ -20,30 +40,38 @@ export default function CampaignsPage() {
         <Card3 name="Animals" icon="fa-solid fa-shield-dog" />
         <Card3 name="Medical" icon="fa-solid fa-heart" />
         <Card3 name="Business" icon="fa-solid fa-building" />
-        <Card3 name="Emergancy" icon="fa-solid fa-umbrella" />
-      </div>
-      <hr></hr>
-      <div>
-      <CampaignsSection name="Medical Campaigns"/>
-      </div>
-      <hr></hr>
-      <div>
-      <CampaignsSection name="Education Campaigns"/>
-      </div>
-      <hr></hr>
-      <div>
-      <CampaignsSection name="Animals Campaigns"/>
-      </div>
-      <hr></hr>
-      <div>
-      <CampaignsSection name="Business Campaigns"/>
-      </div>
-      <hr></hr>
-      <div>
-      <CampaignsSection name="Emergancy Campaigns"/>
+        <Card3 name="Emergency" icon="fa-solid fa-umbrella" />
       </div>
       
-
+      {campaigns.length === 0 && !loading ? (
+        <div className="alert alert-info mt-4">No campaigns available at the moment.</div>
+      ) : (
+        <>
+          <hr />
+          <div>
+            <CampaignsSection name="Medical Campaigns" campaigns={medicalCampaigns} />
+          </div>
+          <hr />
+          <div>
+            <CampaignsSection name="Education Campaigns" campaigns={educationCampaigns} />
+          </div>
+          <hr />
+          <div>
+            <CampaignsSection name="Animals Campaigns" campaigns={animalsCampaigns} />
+          </div>
+          <hr />
+          <div>
+            <CampaignsSection name="Business Campaigns" campaigns={businessCampaigns} />
+          </div>
+          <hr />
+          <div>
+            <CampaignsSection name="Emergency Campaigns" campaigns={emergencyCampaigns} />
+          </div>
+          <div>
+            <CampaignsSection name="All Campaigns" campaigns={campaigns} />
+          </div>
+        </>
+      )}
     </div>
   );
 }

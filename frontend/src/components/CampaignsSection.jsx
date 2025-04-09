@@ -1,30 +1,35 @@
 import Card4 from "./Card4";
-export default function CampaignsSection({name}) {
+
+export default function CampaignsSection({ name, campaigns = [] }) {
+  // Display a message if no campaigns are available for this category
+  if (campaigns.length === 0) {
+    return (
+      <>
+        <h1 className="fs-3 fw-bold gidole-regular mt-5">{name}</h1>
+        <p className="text-muted">No campaigns available in this category.</p>
+      </>
+    );
+  }
+
+  // Only show up to 3 campaigns per section
+  const displayCampaigns = campaigns.slice(0, 3);
+
   return (
     <>
-      <h1 className="fs-3 fw-bold gidole-regular  mt-5">{name}</h1>
+      <h1 className="fs-3 fw-bold gidole-regular mt-5">{name}</h1>
       <div className="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center">
-        <Card4
-          image="/cancer_card.jpg"
-          title="Medical Campaign 1"
-          totalAmount="1000"
-          currentAmount="496"
-          link="#"
-        />
-        <Card4
-          image="/cancer_card.jpg"
-          title="Medical Campaign 2"
-          totalAmount="2000"
-          currentAmount="1400"
-          link="#"
-        />
-        <Card4
-          image="/cancer_card.jpg"
-          title="Medical Campaign 3"
-          totalAmount="3000"
-          currentAmount="1322"
-          link="#"
-        />
+        {displayCampaigns.map(campaign => (
+          <Card4
+            key={campaign.id}
+            image={campaign.images && campaign.images.length > 0 
+              ? campaign.images[0].image 
+              : "/cancer_card.jpg"}
+            title={campaign.title}
+            totalAmount={campaign.goal_amount}
+            currentAmount={campaign.raised_amount}
+            link={`/campaigns/${campaign.id}`}
+          />
+        ))}
       </div>
     </>
   );
