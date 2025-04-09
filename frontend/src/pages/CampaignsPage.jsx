@@ -19,6 +19,36 @@ export default function CampaignsPage() {
   const businessCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Business');
   const emergencyCampaigns = campaigns.filter(campaign => campaign.category?.name === 'Emergency');
   
+=======
+  const categories = [
+    {
+      id: "education",
+      name: "Education",
+      icon: "fa-solid fa-graduation-cap"
+    },
+    {
+      id: "animals", 
+      name: "Animals",
+      icon: "fa-solid fa-shield-dog"
+    },
+    {
+      id: "medical",
+      name: "Medical", 
+      icon: "fa-solid fa-heart"
+    },
+    {
+      id: "business",
+      name: "Business",
+      icon: "fa-solid fa-building"
+    },
+    {
+      id: "emergency",
+      name: "Emergency",
+      icon: "fa-solid fa-umbrella" 
+    }
+  ];
+
+>>>>>>> 6703edfe5e77c4f2bebbf9905a5eaf72a2e56244
   return (
     <div className="container mt-5 mb-5">
       {loading && <div className="text-center"><div className="spinner-border" role="status"></div></div>}
