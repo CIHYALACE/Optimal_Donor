@@ -27,7 +27,7 @@ class CampaignSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
     images = CampaignImageSerializer(many=True, read_only=True)
-    average_rating = serializers.FloatField(source='average_rating', read_only=True)
+    average_rating = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Campaign
