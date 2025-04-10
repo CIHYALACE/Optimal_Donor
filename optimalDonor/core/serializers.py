@@ -28,12 +28,13 @@ class CampaignSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
     images = CampaignImageSerializer(many=True, read_only=True)
     average_rating = serializers.FloatField(read_only=True)
+    is_published = serializers.BooleanField(default=True)
 
     class Meta:
         model = Campaign
         fields = [
             'id', 'title', 'description', 'category', 'goal_amount', 'raised_amount',
-            'start_time', 'end_date', 'owner', 'status', 'tags', 'images', 'average_rating'
+            'start_time', 'end_date', 'owner', 'status', 'tags', 'images', 'average_rating' , 'is_published'
         ]
         read_only_fields = ['id', 'start_time', 'raised_amount', 'owner', 'status']
 

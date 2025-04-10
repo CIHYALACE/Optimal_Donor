@@ -89,4 +89,4 @@ class LatestCampaignsView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Campaign.objects.filter(is_published=True).order_by('-start_time')[:5]
+        return Campaign.objects.all().filter(is_published=True).order_by('-start_time')[:5]
