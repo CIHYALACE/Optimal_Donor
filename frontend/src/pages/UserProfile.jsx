@@ -9,6 +9,7 @@ export default function UserProfile() {
 
   const LogOut = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     window.location.href = "/";
   }
 

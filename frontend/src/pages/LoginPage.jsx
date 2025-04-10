@@ -65,7 +65,7 @@ export default function LoginPage() {
     if (validateForm()) {
       dispatch(loginUser({
         email: formData.email,
-        password: formData.password
+        password: formData.password,
       }));
     }
   };
