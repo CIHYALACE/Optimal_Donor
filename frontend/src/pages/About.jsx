@@ -3,31 +3,45 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 const teamMembers = [
   {
     id: '1',
-    name: 'John Rodriguez',
+    name: 'Ahmed Soliman',
     title: 'CEO & Founder',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300',
+    image: '/Soliman.jpg',
     bio: 'John has over 15 years of experience in the nonprofit sector and founded Optimal Donor to make fundraising more accessible to everyone.'
   },
   {
     id: '2',
-    name: 'Maria Chen',
+    name: 'AbdelRahman Youssef',
     title: 'Chief Operations Officer',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300',
+    image: '/Youssef.jpg',
     bio: 'Maria leads our operations team, ensuring campaigns run smoothly and funds reach their intended recipients safely and quickly.'
   },
   {
     id: '3',
-    name: 'David Washington',
+    name: 'Hosam Semry',
     title: 'Chief Technology Officer',
-    image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=300',
+    image: '/Semry.jpg',
     bio: 'David oversees our technical infrastructure and development, with a focus on creating a secure and user-friendly platform.'
   },
   {
     id: '4',
-    name: 'Priya Sharma',
+    name: 'Mohamed Loay',
+    title: 'Community Outreach Director',
+    image: '/Loay.jpg',
+    bio: 'Priya builds relationships with communities and organizations to help spread awareness about fundraising opportunities.'
+  },
+  {
+    id: '5',
+    name: 'Amr Hosam',
     title: 'Community Outreach Director',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300',
     bio: 'Priya builds relationships with communities and organizations to help spread awareness about fundraising opportunities.'
+  },
+  {
+    id: '6',
+    name: 'Mona Ali',
+    title: 'Supervisor',
+    image: '/Mona.jpeg',
+    bio: 'A supportive and inspiring leader, always guiding with wisdom, patience, and professionalism. A true mentor who brings out the best in everyone.'
   }
 ];
 
@@ -114,7 +128,7 @@ const AboutPage = () => {
         <h2 className="text-center perfect-font mb-5">Our Team</h2>
         <Row>
           {teamMembers.map((member) => (
-            <Col md={6} lg={3} key={member.id} className="mb-4">
+            <Col md={6} lg={4} key={member.id} className="mb-4">
               <Card className="h-100 shadow-sm text-center">
                 <div className="pt-3">
                   <img

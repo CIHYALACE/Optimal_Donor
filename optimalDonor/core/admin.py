@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Campaign, Category, Tag, CampaignImage, Donation, Rating
+from .models import Campaign, Category, Tag, CampaignImage, Donation, Rating, Comment
 
 class CampaignAdmin(admin.ModelAdmin):
     list_display = ('title', 'owner', 'goal_amount', 'raised_amount', 'start_time', 'end_date', 'status')
@@ -39,3 +39,9 @@ class RatingAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'campaign__title')
     ordering = ('-created_at',)
 admin.site.register(Rating, RatingAdmin)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'campaign', 'text', 'created_at')
+    search_fields = ('user__username', 'campaign__title')
+    ordering = ('-created_at',)
+admin.site.register(Comment, CommentAdmin)

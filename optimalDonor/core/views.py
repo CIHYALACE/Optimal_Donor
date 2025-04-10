@@ -16,8 +16,8 @@ class CampaignViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             return Campaign.objects.all()
-        return Campaign.objects.filter(status='active')
-
+        return Campaign.objects.filter(is_published=True)
+       
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

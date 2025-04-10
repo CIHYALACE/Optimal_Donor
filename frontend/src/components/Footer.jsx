@@ -3,6 +3,7 @@ export default function Footer() {
     <>
       <div>
         <footer
+          id="contact-section"
           className="text-center text-lg-start text-white bg-dark">
           <section
             className="d-flex justify-content-between p-4"
