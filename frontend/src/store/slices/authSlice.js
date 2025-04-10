@@ -13,7 +13,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem('refreshToken', response.data.refresh);
       
       // Set default authorization header for all future requests
-      axios.defaults.headers.common['Authorization'] = `JWT ${response.data.access}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
       
       // Fetch user data
       const userResponse = await axios.get(ENDPOINTS.AUTH.ME);
@@ -67,7 +67,7 @@ export const refreshToken = createAsyncThunk(
       localStorage.setItem('accessToken', response.data.access);
       
       // Update authorization header
-      axios.defaults.headers.common['Authorization'] = `JWT ${response.data.access}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
       
       return response.data;
     } catch (error) {
@@ -92,7 +92,7 @@ const initialState = {
 // Setup axios with stored token if it exists
 const token = localStorage.getItem('accessToken');
 if (token) {
-  axios.defaults.headers.common['Authorization'] = `JWT ${token}`;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
 // Slice

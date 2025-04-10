@@ -134,7 +134,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE':True,
     'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL':'activate/{uid}/{token}',
+    'ACTIVATION_URL':'users/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL':True,
     "SITE_NAME": SITE_NAME,
     'SERIALIZERS': {

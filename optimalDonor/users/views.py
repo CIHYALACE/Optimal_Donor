@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from rest_framework import viewsets
 from .models import CustomUser, UserProfile
 from .serializers import CustomUserSerializer, UserProfileSerializer
@@ -28,3 +28,6 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Custom logic before saving the user profile instance
         serializer.save()
+
+def activate_redirect(request, uid, token):
+    return redirect('http://localhost:5173/campaigns')
