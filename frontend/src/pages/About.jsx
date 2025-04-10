@@ -33,7 +33,7 @@ const teamMembers = [
     id: '5',
     name: 'Amr Hosam',
     title: 'Community Outreach Director',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300',
+    image: '/Amr.jpeg',
     bio: 'Priya builds relationships with communities and organizations to help spread awareness about fundraising opportunities.'
   },
   {
