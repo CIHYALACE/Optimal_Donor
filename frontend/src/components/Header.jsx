@@ -25,7 +25,7 @@ export default function Header() {
             <Nav.Link className="nav-link" href="#home">Home</Nav.Link>
             <Nav.Link className="nav-link" href="/about">About</Nav.Link>
             <Nav.Link className={"nav-link"} href="/campaigns">Campaigns</Nav.Link>
-            <Nav.Link className="nav-link" href="#link">Contact</Nav.Link>
+            <Nav.Link className="nav-link" href="#contact-section">Contact</Nav.Link>
             <NavLink className={"nav-link"}><i className="fa-solid fa-search fs-5 d-none d-lg-inline px-2 text-success"></i></NavLink>
             <NavLink className={"nav-link"} to="/login"><i className="fa-solid fa-user fs-5 d-none d-lg-inline px-2 text-success"></i></NavLink>
           </Nav>
