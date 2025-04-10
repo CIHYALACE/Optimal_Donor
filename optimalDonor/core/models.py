@@ -64,7 +64,7 @@ class Donation(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='donations')
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='donations')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f"{self.user.username} donated {self.amount} to {self.campaign.title}"
@@ -73,7 +73,7 @@ class Rating(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='ratings')
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='ratings')
     value = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return f"{self.user.username} rated {self.campaign.title} {self.value}/5"
 
@@ -81,7 +81,7 @@ class Comment(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f"Comment by {self.user.username} on {self.campaign.title}"
@@ -99,7 +99,7 @@ class Report(models.Model):
     project = models.ForeignKey(Campaign, on_delete=models.CASCADE, null=True, blank=True, related_name='reports')
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, blank=True, related_name='reports')
     reason = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
 
     def __str__(self):
         if self.project:
