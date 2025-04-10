@@ -152,6 +152,10 @@ margin-bottom: 0;
   font-size: 1rem;
 }
 
+.perfect-font {
+  font-family: 'Berkshire Swash', cursive;
+}
+
 @media (min-width: 992px) {
   .responsive-height {
     height: 50vh;
