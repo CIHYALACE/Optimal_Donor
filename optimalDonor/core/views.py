@@ -82,3 +82,11 @@ class ReportViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(reporter=self.request.user)
+
+
+class LatestCampaignsView(viewsets.ModelViewSet):
+    serializer_class = CampaignSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Campaign.objects.filter(is_published=True).order_by('-start_time')[:5]
