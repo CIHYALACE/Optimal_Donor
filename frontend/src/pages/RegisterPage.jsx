@@ -117,7 +117,7 @@ export default function RegisterPage() {
                 <div className="row g-0">
                   <div className="col-xl-6 d-none d-xl-block">
                     <img
-                      src="https://images.unsplash.com/photo-1593113598332-cd59a93e6f62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
+                      src="https://images.pexels.com/photos/6591166/pexels-photo-6591166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                       alt="Donation"
                       className="img-fluid h-100"
                       style={{
