@@ -144,13 +144,9 @@ const campaignsSlice = createSlice({
       })
       .addCase(createCampaign.fulfilled, (state, action) => {
         state.loading = false;
-        // Ensure proper category assignment
-        if (action.payload.category) {
-          state.campaigns = [action.payload, ...state.campaigns];
-        }
+        state.campaigns.push(action.payload);
         state.currentCampaign = action.payload;
         state.success = true;
-        state.error = null;
       })
       .addCase(createCampaign.rejected, (state, action) => {
         state.loading = false;
