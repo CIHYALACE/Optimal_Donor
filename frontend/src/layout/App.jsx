@@ -7,7 +7,7 @@ import RegisterPage from "../pages/RegisterPage";
 import UserProfile from "../pages/UserProfile";
 import CampaignsPage from "../pages/CampaignsPage";
 import AboutPage from "../pages/About";
-
+import CampaignCreationPage from "../pages/CampaignCreationPage";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/campaigns/create" element={<CampaignCreationPage />} />
         <Route path="/user/" element={<UserProfile/>} />
         <Route path="/campaigns" element={<CampaignsPage />} />
         <Route path="/about" element={<AboutPage />} />
