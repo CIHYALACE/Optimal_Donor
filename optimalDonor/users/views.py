@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import CustomUser
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -23,7 +24,8 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-
+    parser_classes = [MultiPartParser, FormParser]
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         # Add any custom filtering or ordering logic here if needed
