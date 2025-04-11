@@ -9,6 +9,7 @@ export default function CampaignCreationPage() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector(state => state.campaigns);
   const { isAuthenticated } = useSelector(state => state.auth);
+  const { categories, loading: categoriesLoading } = useSelector(state => state.categories);
   useEffect(()=>{
     dispatch(fetchCategories())
   },[])
@@ -22,7 +23,7 @@ export default function CampaignCreationPage() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    category: '',  // Changed from category to category
+    category: '',  // Changed from category to category // 
     goal_amount: '',
     end_date: '',
     images: []
@@ -125,13 +126,14 @@ export default function CampaignCreationPage() {
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
+                    disabled={categoriesLoading}
                   >
                     <option value="">Select a category</option>
-                    <option value="1">Medical</option>
-                    <option value="2">Education</option>
-                    <option value="3">Animals</option>
-                    <option value="4">Business</option>
-                    <option value="5">Emergency</option>
+                    {categories.map(category => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
                   {formErrors.category && <div className="invalid-feedback">{formErrors.category}</div>}
                 </div>
