@@ -31,7 +31,7 @@ class CustomUserAdmin(BaseUserAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
     model = UserProfile
 
-    list_display = ('user', 'bio', 'location', 'date_of_birth')
+    list_display = ('user', 'bio', 'location', 'date_of_birth' ) # , 'facebook_profile', 'country')
     list_filter = ('user',)
     search_fields = ('user__email', 'user__name')
     ordering = ('user__email',)
