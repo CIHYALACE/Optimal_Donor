@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser, UserProfile
 from core.models import Campaign
-
+from core.serializers import CampaignSerializer
 
 class CustomUserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -39,7 +39,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ["id", "user", "bio", "location", "date_of_birth", "picture", "donated_campaigns"]
+        fields = [
+            "id",
+            "user",
+            "bio",
+            "location",
+            "date_of_birth",
+            "picture",
+            "facebook_profile",  # New field
+            "country",  # New field
+            "donated_campaigns",
+        ]
 
     def get_donated_campaigns(self, obj):
         campaigns = obj.get_donated_campaigns().distinct()

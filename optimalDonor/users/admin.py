@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import CustomUser
+from .models import CustomUser, UserProfile
 
 @admin.register(CustomUser)
 class CustomUserAdmin(BaseUserAdmin):
@@ -26,3 +26,12 @@ class CustomUserAdmin(BaseUserAdmin):
             'fields': ('email', 'name', 'password1', 'password2', 'is_staff', 'is_active')}
         ),
     )
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    model = UserProfile
+
+    list_display = ('user', 'bio', 'location', 'date_of_birth', 'facebook_profile', 'country')
+    list_filter = ('user',)
+    search_fields = ('user__email', 'user__name')
+    ordering = ('user__email',)
