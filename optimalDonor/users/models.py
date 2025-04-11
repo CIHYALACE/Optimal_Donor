@@ -46,8 +46,8 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=100, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    facebook_profile = models.URLField(blank=True, null=True)  # New field
-    country = models.CharField(max_length=100, blank=True, null=True)  # New field
+    # facebook_profile = models.URLField(blank=True, null=True)  # New field
+    # country = models.CharField(max_length=100, blank=True, null=True)  # New field
 
     def get_donated_campaigns(self):
         Campaign = apps.get_model('core', 'Campaign')

@@ -46,8 +46,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "location",
             "date_of_birth",
             "picture",
-            "facebook_profile",  # New field
-            "country",  # New field
+            # "facebook_profile",  # New field
+            # "country",  # New field
             "donated_campaigns",
         ]
 
