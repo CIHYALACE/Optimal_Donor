@@ -2,6 +2,10 @@ from django.shortcuts import redirect
 from rest_framework import viewsets
 from .models import CustomUser, UserProfile
 from .serializers import CustomUserSerializer, UserProfileSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import CustomUser
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -29,5 +33,16 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         # Custom logic before saving the user profile instance
         serializer.save()
 
+
+class DeleteAccountView(APIView):
+    def delete(self, request, user_id):
+        try:
+            user = CustomUser.objects.get(id=user_id)
+            user.delete()
+            return Response({"message": "Account deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+        except CustomUser.DoesNotExist:
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
 def activate_redirect(request, uid, token):
     return redirect('http://localhost:5173/campaigns')
+
