@@ -4,7 +4,7 @@ export const BASE_URL = 'http://127.0.0.1:8000';
 // Endpoints
 export const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
-  PROFILES: `${BASE_URL}/profiles`,
+  PROFILES: `${BASE_URL}/users/profiles`,
   AUTH: {
     TOKEN: `${BASE_URL}/auth/jwt/create/`,
     REFRESH: `${BASE_URL}/auth/jwt/refresh/`,
