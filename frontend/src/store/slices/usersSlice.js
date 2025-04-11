@@ -53,6 +53,22 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
+export const deleteUserAccount = createAsyncThunk(
+  'users/deleteUserAccount',
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`${ENDPOINTS.USERS}/${userId}/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Failed to delete account');
+    }
+  }
+);
+
 // Slice
 const usersSlice = createSlice({
   name: 'users',
