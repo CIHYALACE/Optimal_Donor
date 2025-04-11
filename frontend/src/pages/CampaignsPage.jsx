@@ -91,7 +91,7 @@ export default function CampaignsPage() {
 
       {uniqueCategories.length > 0 ? (
         <>
-          <div className="d-flex justify-content-between align-items-center gap-1 mt-5 flex-wrap">
+          <div className="d-flex justify-content-between align-items-center gap-0 mt-5 flex-wrap">
             {uniqueCategories.map(category => (
               <Card3 
                 key={category.id}
