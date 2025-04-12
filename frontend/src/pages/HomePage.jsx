@@ -1,6 +1,7 @@
 import HeroSection from "../components/HeroSection";
 import TopicsSection from "../components/TopicsSection";
 import Slider from "../components/Slider";
+import LatestCampaigns from "../components/LatestCampaigns";
 
 export default function HomePage() {
     return (
@@ -8,7 +9,7 @@ export default function HomePage() {
             <HeroSection />
             <Slider />
             <TopicsSection />
-            <TopicsSection />
+            <LatestCampaigns />
         </>
     )
 }
