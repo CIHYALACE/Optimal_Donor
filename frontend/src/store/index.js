@@ -8,6 +8,7 @@ import tagsReducer from './slices/tagsSlice';
 import commentsReducer from './slices/commentsSlice';
 import ratingsReducer from './slices/ratingsSlice';
 import reportsReducer from './slices/reportsSlice';
+import latestCampaignsReducer from './slices/latestCampaignsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     comments: commentsReducer,
     ratings: ratingsReducer,
     reports: reportsReducer,
+    latestCampaigns: latestCampaignsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

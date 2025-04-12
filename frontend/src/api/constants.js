@@ -20,4 +20,5 @@ export const ENDPOINTS = {
   RATINGS: `${BASE_URL}/ratings`,
   REPORTS: `${BASE_URL}/reports`,
   CAMPAIGN_IMAGES: `${BASE_URL}/campaign-images`,
+  LATEST_CAMPAIGNS: `${BASE_URL}/latest-campaigns`,
 };
