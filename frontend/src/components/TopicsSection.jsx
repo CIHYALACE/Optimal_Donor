@@ -1,40 +1,24 @@
-import Card1 from "./Card1"
-import Card2 from "./Card2"
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCampaigns } from "../store/slices/campaignsSlice";
+import Card1 from "./Card1";
+import Card2 from "./Card2";
 
 export default function TopicsSection() {
-    const cardData = [ 
-        {
-            title: "Palistine _ Gaza",
-            text: "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-            imgSrc: "/palistine_card.jpg",
-            action: "Donate Now",
-        },
-        {
-            title: "Donoers Profile",
-            text: "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-            imgSrc: "/profile_card.jpg",
-            action: "Learn More",
-        },
-        {
-            title: "Helping debtors",
-            text: "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-            imgSrc: "/prison_card.jpg",
-            action: "Donate Now",
-        },
-        {
-            title: "Cancer patients",
-            text: "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-            imgSrc: "cancer_card.jpg",
-            action: "Donate Now",
-        },
-        {
-            title: "Pediatric surgeries",
-            text: "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-            imgSrc: "/children_card.jpg",
-            action: "Donate Now",
-        }
-    ]// Array of card data
-    return(
+    const dispatch = useDispatch();
+
+    // Access campaigns and loading state from Redux store
+    const { campaigns, loading } = useSelector((state) => state.campaigns);
+
+    // Fetch campaigns on component mount
+    useEffect(() => {
+        dispatch(fetchCampaigns());
+    }, [dispatch]);
+
+    // Filter campaigns by is_featured
+    const featuredCampaigns = campaigns.filter((campaign) => campaign.is_featured === true);
+
+    return (
         <>
             <div className="container mb-5 mt-5 mt-md-0">
                 <div className="row">
@@ -42,13 +26,36 @@ export default function TopicsSection() {
                     <p className="text-start">Find your cause and start a campaign</p>
                 </div>
                 <div className="row d-flex justify-content-center align-items-center gap-0 flex-wrap">
-                    <Card1 title={cardData[0].title} text={cardData[0].text} imgSrc={cardData[0].imgSrc} action={cardData[0].action} />
-                    <Card2 title={cardData[1].title} text={cardData[1].text} imgSrc={cardData[1].imgSrc} action={cardData[1].action} />
-                    <Card2 title={cardData[2].title} text={cardData[2].text} imgSrc={cardData[2].imgSrc} action={cardData[2].action} />
-                    <Card2 title={cardData[3].title} text={cardData[3].text} imgSrc={cardData[3].imgSrc} action={cardData[3].action} />
-                    <Card2 title={cardData[4].title} text={cardData[4].text} imgSrc={cardData[4].imgSrc} action={cardData[4].action} />
-                </div>    
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        featuredCampaigns.map((campaign, index) => {
+                            // Extract the first image URL or use a default image
+                            const imgSrc = campaign.images && campaign.images.length > 0
+                                ? campaign.images[0].image
+                                : "/default_image.jpg";
+
+                            return index === 0 ? (
+                                <Card1
+                                    key={campaign.id}
+                                    title={campaign.title}
+                                    text={campaign.description}
+                                    imgSrc={imgSrc}
+                                    action="Donate Now"
+                                />
+                            ) : (
+                                <Card2
+                                    key={campaign.id}
+                                    title={campaign.title}
+                                    text={campaign.description}
+                                    imgSrc={imgSrc}
+                                    action="Donate Now"
+                                />
+                            );
+                        })
+                    )}
+                </div>
             </div>
         </>
-    )
+    );
 }

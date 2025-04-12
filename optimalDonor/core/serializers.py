@@ -35,7 +35,7 @@ class CampaignSerializer(serializers.ModelSerializer):
         model = Campaign
         fields = [
             'id', 'title', 'description', 'category', 'category_id', 'goal_amount', 'raised_amount',
-            'start_time', 'end_date', 'owner', 'status', 'tags', 'images', 'average_rating', 'is_published'
+            'start_time', 'end_date', 'owner', 'status', 'tags', 'images', 'average_rating', 'is_published','is_featured'
         ]
         read_only_fields = ['id', 'start_time', 'raised_amount', 'owner', 'status']
 
