@@ -23,4 +23,5 @@ urlpatterns = [
     path('campaigns/<int:campaign_id>/tags/', CampaignViewSet.as_view({'post': 'add_tags'}), name='add-tags'),
     path('campaigns/<int:campaign_id>/tags/<int:tag_id>/', CampaignViewSet.as_view({'delete': 'remove_tag'}), name='remove-tag'),
     path('campaigns/<int:campaign_id>/images/<int:image_id>/', CampaignViewSet.as_view({'get': 'get_image', 'put': 'update_image', 'delete': 'remove_image'}), name='image-detail'),
+    path('campaigns/<int:campaign_id>/donate/', DonateToCampaignView.as_view(), name='donate-to-campaign'),
 ]

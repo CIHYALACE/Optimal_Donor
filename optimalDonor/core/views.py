@@ -1,4 +1,7 @@
 from rest_framework import viewsets, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from decimal import Decimal 
 from .models import (
     Campaign, Tag, Category, CampaignImage,
     Donation, Rating, Comment, Report
@@ -50,7 +53,33 @@ class DonationViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class DonateToCampaignView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
+    def post(self, request, campaign_id):
+        try:
+            campaign = Campaign.objects.get(id=campaign_id)
+            amount = request.data.get('amount')
+
+            # Validate the donation amount
+            if not amount or float(amount) <= 0:
+                return Response({'error': 'Invalid donation amount'}, status=400)
+
+            # Convert amount to Decimal
+            amount = Decimal(amount)
+
+            # Create the donation
+            donation = Donation.objects.create(user=request.user, campaign=campaign, amount=amount)
+
+            # Update the raised_amount of the campaign
+            campaign.raised_amount += amount
+            campaign.save()
+
+            return Response({'status': 'donation created', 'donation_id': donation.id, 'raised_amount': campaign.raised_amount})
+        except Campaign.DoesNotExist:
+            return Response({'error': 'Campaign not found'}, status=404)
+        except Exception as e:
+            return Response({'error': str(e)}, status=500)
 class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

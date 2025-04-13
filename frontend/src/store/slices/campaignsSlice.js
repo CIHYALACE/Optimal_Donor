@@ -53,6 +53,18 @@ export const updateCampaign = createAsyncThunk(
   }
 );
 
+export const donateToCampaign = createAsyncThunk(
+  'campaigns/donateToCampaign',
+  async ({ campaignId, amount }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${API_URL}${campaignId}/donate/`, { amount });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Failed to process donation');
+    }
+  }
+);
+
 export const deleteCampaign = createAsyncThunk(
   'campaigns/deleteCampaign',
   async (campaignId, { rejectWithValue }) => {
@@ -175,6 +187,8 @@ const campaignsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
+      
       
       // Delete campaign
       .addCase(deleteCampaign.pending, (state) => {
