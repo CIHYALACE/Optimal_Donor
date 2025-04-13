@@ -3,14 +3,19 @@ import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampaigns } from '../store/slices/campaignsSlice';
 import CampaignsSection from '../components/CampaignsSection';
+import { useLocation } from "react-router-dom";
+
 
 export default function CampaignsPage() {
   const dispatch = useDispatch();
   const { campaigns, loading, error } = useSelector(state => state.campaigns);
-  
+  const location = useLocation();
+
   useEffect(() => {
-    dispatch(fetchCampaigns());
-  }, [dispatch]);
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get("search") || "";
+    dispatch(fetchCampaigns({ search: searchQuery }));
+}, [dispatch, location.search]);
   
   // Known category order (for prioritizing display)
   const knownCategoryOrder = ['medical', 'education', 'animals', 'business', 'emergency'];

@@ -1,6 +1,8 @@
 from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from decimal import Decimal 
 from .models import (
     Campaign, Tag, Category, CampaignImage,
@@ -15,6 +17,8 @@ from .serializers import (
 class CampaignViewSet(viewsets.ModelViewSet):
     serializer_class = CampaignSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'tags__name'] 
 
     def get_queryset(self):
         if self.request.user.is_authenticated:

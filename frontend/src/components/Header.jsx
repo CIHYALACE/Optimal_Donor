@@ -1,12 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/campaigns?search=${searchQuery}`);
+        }
+    };
   return (
     <Navbar expand="lg" className="bg-body-tertiary position-sticky top-0 z-1">
       <Container>
@@ -30,7 +39,18 @@ export default function Header() {
             <Nav.Link className="nav-link" href="/about">About</Nav.Link>
             <Nav.Link className={"nav-link"} href="/campaigns">Campaigns</Nav.Link>
             <Nav.Link className="nav-link" href="#contact-section">Contact</Nav.Link>
-            <NavLink className={"nav-link"}><i className="fa-solid fa-search fs-5 d-none d-lg-inline px-2 text-success"></i></NavLink>
+            <form className="d-flex ms-auto" onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        className="form-control me-2"
+                        placeholder="Search campaigns..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <button className="btn btn-success" type="submit">
+                        <i className="fa-solid fa-search"></i>
+                    </button>
+                </form>
             <NavLink className={"nav-link"} to={isAuthenticated ? "/profile" : "/login"}>
               <i className="fa-solid fa-user fs-5 d-none d-lg-inline px-2 text-success"></i>
             </NavLink>
