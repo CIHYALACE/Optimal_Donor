@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import CustomUser, UserProfile
 from core.models import Campaign
 from core.serializers import CampaignSerializer
+from django.db import models
+from core.models import Donation
 
 class CustomUserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -36,6 +38,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     user = CustomUserSerializer(required=False)
     donated_campaigns = serializers.SerializerMethodField()
+    created_campaigns = serializers.SerializerMethodField()
+    total_donations = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
@@ -46,15 +50,21 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "location",
             "date_of_birth",
             "picture",
-            # "facebook_profile",  # New field
-            # "country",  # New field
+            'total_donations',
             "donated_campaigns",
+            "created_campaigns",
         ]
+    def get_total_donations(self, obj):
+        return Donation.objects.filter(user=obj.user).aggregate(total=models.Sum('amount'))['total'] or 0
 
     def get_donated_campaigns(self, obj):
         campaigns = obj.get_donated_campaigns().distinct()
         return CampaignSerializer(campaigns, many=True).data
 
+    def get_created_campaigns(self, obj):
+        campaigns = Campaign.objects.filter(owner=obj.user)
+        return CampaignSerializer(campaigns, many=True).data
+    
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)
         if user_data:
