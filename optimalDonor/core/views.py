@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from decimal import Decimal 
+from django.core.exceptions import PermissionDenied
 from .models import (
     Campaign, Tag, Category, CampaignImage,
     Donation, Rating, Comment, Report
@@ -27,6 +28,13 @@ class CampaignViewSet(viewsets.ModelViewSet):
        
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def perform_destroy(self, instance):
+        # Check if the user is the owner of the campaign
+        if instance.owner != self.request.user:
+            raise PermissionDenied("You do not have permission to delete this campaign.")
+        instance.is_published = False
+        instance.save()
 
 
 class TagViewSet(viewsets.ModelViewSet):
