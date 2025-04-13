@@ -44,9 +44,7 @@ export default function UserProfile() {
       name: userProfile?.user?.name || "",
       bio: userProfile?.bio || "",
       location: userProfile?.location || "",
-      date_of_birth: userProfile?.date_of_birth || "",
-      facebook_profile: userProfile?.facebook_profile || "",
-      country: userProfile?.country || "",
+      date_of_birth: userProfile?.date_of_birth || ""
     });
   };
 
@@ -57,10 +55,8 @@ export default function UserProfile() {
       formDataToSend.append("bio", formData.bio);
       formDataToSend.append("location", formData.location);
       formDataToSend.append("date_of_birth", formData.date_of_birth);
-      formDataToSend.append("facebook_profile", formData.facebook_profile);
-      formDataToSend.append("country", formData.country);
       if (formData.picture) {
-        formDataToSend.append("picture", formData.picture); // Add picture if selected
+        formDataToSend.append("picture", formData.picture); 
       }
   
       console.log("Endpoint:", `${ENDPOINTS.PROFILES}/${userProfile.id}/`);
@@ -178,7 +174,7 @@ export default function UserProfile() {
           <h3 className="fw-bold mt-3">{userProfile?.user?.name || "John Doe"}</h3>
           <p className="text-muted">
             <FaLocationDot className="me-2 text-success mb-1" />
-            {userProfile?.location || "Unknown Location"}, {userProfile?.country || "Unknown Country"}
+            {userProfile?.location || "Unknown Location"}
           </p>
 
           <h4 className="fw-bold text-success mt-4">Bio</h4>
@@ -190,10 +186,7 @@ export default function UserProfile() {
           <p className="text-center text-muted">
             {userProfile?.date_of_birth || "01/01/2000"}
           </p>
-          <h4 className="fw-bold text-success mt-4">Facebook Profile</h4>
-          <p className="text-center text-muted">
-            {userProfile?.facebook_profile || "https://www.facebook.com/unknown"}
-          </p>
+          
         </Card.Body>
       </Card>
 
@@ -247,24 +240,8 @@ export default function UserProfile() {
                 }
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Facebook Profile</Form.Label>
-              <Form.Control
-                type="url"
-                value={formData.facebook_profile}
-                onChange={(e) =>
-                  setFormData({ ...formData, facebook_profile: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Country</Form.Label>
-              <Form.Control
-                type="text"
-                value={formData.country}
-                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-              />
-            </Form.Group>
+            
+           
           </Form>
         </Modal.Body>
         <Modal.Footer>
