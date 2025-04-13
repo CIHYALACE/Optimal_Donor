@@ -51,20 +51,6 @@ export default function CampaignDetailsPage() {
     }
   };
 
-  const handleDonateClick = () => {
-    setShowDonationForm(true);
-  };
-
-  const handleFormClose = () => {
-    setShowDonationForm(false);
-    setDonationAmount('');
-  };
-
-  const handleDonationSubmit = () => {
-    // Handle donation submission logic here
-    console.log(`Donating $${donationAmount} to campaign: ${currentCampaign.title}`);
-    handleFormClose();
-  };
 
   return (
     <div className="container mt-5 mb-5">
