@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampaignById } from '../store/slices/campaignsSlice';
@@ -8,6 +8,8 @@ export default function CampaignDetailsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { currentCampaign, loading, error } = useSelector(state => state.campaigns);
+  const [showDonationForm, setShowDonationForm] = useState(false);
+  const [donationAmount, setDonationAmount] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -46,6 +48,21 @@ export default function CampaignDetailsPage() {
       return currentCampaign.images[0].image;
     }
     return "/cancer_card.jpg"; // Default image
+  };
+
+  const handleDonateClick = () => {
+    setShowDonationForm(true);
+  };
+
+  const handleFormClose = () => {
+    setShowDonationForm(false);
+    setDonationAmount('');
+  };
+
+  const handleDonationSubmit = () => {
+    // Handle donation submission logic here
+    console.log(`Donating $${donationAmount} to campaign: ${currentCampaign.title}`);
+    handleFormClose();
   };
 
   return (
@@ -101,9 +118,9 @@ export default function CampaignDetailsPage() {
                 </div>
                 
                 <div className="d-grid gap-2">
-                  <button className="btn btn-success btn-lg">
+                  <button className="btn btn-success btn-lg" onClick={handleDonateClick}>
                     <i className="fa-solid fa-hand-holding-heart me-2"></i>
-                    Donate Now
+                    Donate Now !!
                   </button>
                 </div>
               </div>
@@ -158,6 +175,40 @@ export default function CampaignDetailsPage() {
       {!loading && !currentCampaign && !error && (
         <div className="alert alert-info">
           Campaign not found. The campaign may have been removed or the ID is invalid.
+        </div>
+      )}
+
+      {/* Donation Form Modal */}
+      {showDonationForm && (
+        <div className="modal show d-block" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Donate to {currentCampaign.title}</h5>
+                <button type="button" className="btn-close" onClick={handleFormClose}></button>
+              </div>
+              <div className="modal-body">
+                <p className="mb-3">You are donating to: <strong>{currentCampaign.title}</strong></p>
+                <div className="mb-3">
+                  <label htmlFor="donationAmount" className="form-label">Donation Amount ($)</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="donationAmount"
+                    value={donationAmount}
+                    onChange={(e) => setDonationAmount(e.target.value)}
+                    min="1"
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleFormClose}>Close</button>
+                <button type="button" className="btn btn-success" onClick={handleDonationSubmit} disabled={!donationAmount}>
+                  Donate
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
