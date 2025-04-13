@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCampaignById, donateToCampaign } from '../store/slices/campaignsSlice';
+import { fetchCampaignById, donateToCampaign, deleteCampaign } from '../store/slices/campaignsSlice';
 import ProgressBar from '../components/ProgressBar';
 import Swal from 'sweetalert2';
 
 export default function CampaignDetailsPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const { currentCampaign, loading, error } = useSelector(state => state.campaigns);
@@ -51,11 +53,33 @@ export default function CampaignDetailsPage() {
     }
   };
 
+  const handleDeleteCampaign = async () => {
+    try {
+      const confirm = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action will permanently delete the campaign.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel',
+      });
+  
+      if (confirm.isConfirmed) {
+        await dispatch(deleteCampaign(currentCampaign.id)).unwrap();
+        Swal.fire('Deleted!', 'The campaign has been deleted.', 'success');
+        navigate('/campaigns');
+      }
+    } catch (error) {
+      console.error('Error deleting campaign:', error);
+      Swal.fire('Error', 'Failed to delete the campaign. Please try again.', 'error');
+    }
+  };
+
 
   return (
     <div className="container mt-5 mb-5">
       {/* Loading and error states */}
-      {loading && (
+      {loading && currentCampaign &&  (
         <div className="text-center">
           <div className="spinner-border" role="status"></div>
         </div>
@@ -103,8 +127,19 @@ export default function CampaignDetailsPage() {
                     <span className="text-muted">Goal: ${currentCampaign.goal_amount}</span>
                   </div>
                 </div>
-                
-                <div className="d-grid gap-2">
+
+                {currentCampaign.raised_amount < 0.25 * currentCampaign.goal_amount && (
+                <div className="d-grid gap-2 mt-3">
+                  <button
+                    className="btn btn-danger btn-lg"
+                    onClick={handleDeleteCampaign}
+                  >
+                    <i className="fa-solid fa-trash me-2"></i>
+                    Delete Campaign
+                  </button>
+                </div>
+              )}
+                <div className="d-grid gap-2 mt-3">
                   <button className="btn btn-success btn-lg" onClick={handleDonateClick}>
                     <i className="fa-solid fa-hand-holding-heart me-2"></i>
                     Donate Now !!
