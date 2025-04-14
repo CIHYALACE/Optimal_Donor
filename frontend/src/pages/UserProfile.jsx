@@ -15,7 +15,6 @@ export default function UserProfile() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [formData, setFormData] = useState({});
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [activeTab, setActiveTab] = useState("donations");
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUserIdAndProfile = async () => {
@@ -296,7 +295,7 @@ export default function UserProfile() {
                 <div className="position-relative">
                   <Card.Img 
                     variant="top" 
-                    src={campaign.image || "https://i.imgur.com/Qtrsrk5.jpg"} 
+                    src={campaign.image?.images?.[0]?.image || "/cancer_card.jpg"}
                     style={{ height: "140px", objectFit: "cover" }}
                   />
                   <Badge 

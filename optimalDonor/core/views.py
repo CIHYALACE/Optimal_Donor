@@ -22,15 +22,12 @@ class CampaignViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'tags__name'] 
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return Campaign.objects.all()
         return Campaign.objects.filter(is_published=True)
        
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
     def perform_destroy(self, instance):
-        # Check if the user is the owner of the campaign
         if instance.owner != self.request.user:
             raise PermissionDenied("You do not have permission to delete this campaign.")
         instance.is_published = False
