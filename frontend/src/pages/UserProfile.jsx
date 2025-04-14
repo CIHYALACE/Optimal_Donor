@@ -15,7 +15,6 @@ export default function UserProfile() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [formData, setFormData] = useState({});
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [activeTab, setActiveTab] = useState("donations");
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUserIdAndProfile = async () => {
@@ -288,75 +287,77 @@ export default function UserProfile() {
         </Button>
       </div>
 
-      {userProfile?.created_campaigns?.length > 0 ? (
-        <div className="row row-cols-1 row-cols-md-2 g-4">
-          {userProfile.created_campaigns.map((campaign) => (
-            <div key={campaign.id} className="col">
-              <Card className="h-100">
-                <div className="position-relative">
-                  <Card.Img 
-                    variant="top" 
-                    src={campaign.image || "https://i.imgur.com/Qtrsrk5.jpg"} 
-                    style={{ height: "140px", objectFit: "cover" }}
-                  />
-                  <Badge 
-                    bg={campaign.status === "active" ? "success" : "secondary"}
-                    className="position-absolute top-0 end-0 m-2"
-                  >
-                    {campaign.status || "Active"}
-                  </Badge>
-                </div>
-
-                <Card.Body>
-                  <Card.Title>{campaign.title}</Card.Title>
-                  <Card.Text className="text-muted small">
-                    {(campaign.description || "No description provided").substring(0, 80)}...
-                  </Card.Text>
-
-                  <div className="progress mb-2" style={{ height: "8px" }}>
-                    <div 
-                      className="progress-bar bg-success" 
-                      style={{ width: `${campaign.progress || 30}%` }}
-                      role="progressbar"
-                      aria-valuenow={campaign.progress || 30}
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-
-                  <div className="d-flex justify-content-between small text-muted">
-                    <span>${campaign.raised_amount || 0} raised</span>
-                    <span>Goal: ${campaign.goal_amount || 1000}</span>
-                  </div>
-                </Card.Body>
-
-                <Card.Footer className="bg-white border-top-0">
-                  <Button 
-                    variant="outline-success" 
-                    size="sm" 
-                    className="w-100"
-                    href={`/campaigns/${campaign.id}`}
-                  >
-                    View Campaign
-                  </Button>
-                </Card.Footer>
-              </Card>
+      {userProfile?.created_campaigns?.filter(campaign => campaign.is_published).length > 0 ? (
+  <div className="row row-cols-1 row-cols-md-2 g-4">
+    {userProfile.created_campaigns
+      .filter(campaign => campaign.is_published)
+      .map((campaign) => (
+        <div key={campaign.id} className="col">
+          <Card className="h-100">
+            <div className="position-relative">
+              <Card.Img 
+                variant="top" 
+                src={campaign.image || "https://i.imgur.com/Qtrsrk5.jpg"} 
+                style={{ height: "140px", objectFit: "cover" }}
+              />
+              <Badge 
+                bg={campaign.status === "active" ? "success" : "secondary"}
+                className="position-absolute top-0 end-0 m-2"
+              >
+                {campaign.status || "Active"}
+              </Badge>
             </div>
-          ))}
+
+            <Card.Body>
+              <Card.Title>{campaign.title}</Card.Title>
+              <Card.Text className="text-muted small">
+                {(campaign.description || "No description provided").substring(0, 80)}...
+              </Card.Text>
+
+              <div className="progress mb-2" style={{ height: "8px" }}>
+                <div 
+                  className="progress-bar bg-success" 
+                  style={{ width: `${campaign.progress || 30}%` }}
+                  role="progressbar"
+                  aria-valuenow={campaign.progress || 30}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                />
+              </div>
+
+              <div className="d-flex justify-content-between small text-muted">
+                <span>${campaign.raised_amount || 0} raised</span>
+                <span>Goal: ${campaign.goal_amount || 1000}</span>
+              </div>
+            </Card.Body>
+
+            <Card.Footer className="bg-white border-top-0">
+              <Button 
+                variant="outline-success" 
+                size="sm" 
+                className="w-100"
+                href={`/campaigns/${campaign.id}`}
+              >
+                View Campaign
+              </Button>
+            </Card.Footer>
+          </Card>
         </div>
-      ) : (
-        <div className="text-center py-5">
-          <img 
-            src="https://i.imgur.com/Qtrsrk5.jpg" 
-            alt="No Campaigns" 
-            style={{ width: "120px", opacity: 0.5 }}
-            className="rounded-circle mb-3"
-          />
-          <h5 className="text-muted">No campaigns created yet</h5>
-          <p className="text-muted">Start making a difference by creating your first campaign</p>
-          <Button variant="success">Create Campaign</Button>
-        </div>
-      )}
+      ))}
+  </div>
+) : (
+  <div className="text-center py-5">
+    <img 
+      src="https://i.imgur.com/Qtrsrk5.jpg" 
+      alt="No Campaigns" 
+      style={{ width: "120px", opacity: 0.5 }}
+      className="rounded-circle mb-3"
+    />
+    <h5 className="text-muted">No campaigns created yet</h5>
+    <p className="text-muted">Start making a difference by creating your first campaign</p>
+    <Button variant="success">Create Campaign</Button>
+  </div>
+)}
     </Card.Body>
   </Card>
 </Col>

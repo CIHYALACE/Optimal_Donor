@@ -22,8 +22,6 @@ class CampaignViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'tags__name'] 
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return Campaign.objects.all()
         return Campaign.objects.filter(is_published=True)
        
     def perform_create(self, serializer):

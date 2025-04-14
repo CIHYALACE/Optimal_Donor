@@ -135,7 +135,7 @@ export default function CampaignDetailsPage() {
                     onClick={handleDeleteCampaign}
                   >
                     <i className="fa-solid fa-trash me-2"></i>
-                    Delete Campaign
+                    Cancel Campaign
                   </button>
                 </div>
               )}
