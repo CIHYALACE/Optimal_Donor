@@ -20,7 +20,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             phone_number=validated_data.get('phone_number')
         )
         user.set_password(validated_data['password'])
-        user.is_active = True
+        user.is_active = False
         user.save()
         return user
 
@@ -64,7 +64,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def get_created_campaigns(self, obj):
         campaigns = Campaign.objects.filter(owner=obj.user)
         return CampaignSerializer(campaigns, many=True).data
-    
+
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)
         if user_data:
