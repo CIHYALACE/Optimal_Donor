@@ -21,7 +21,7 @@ export default function UserProfile() {
       try {
         const response = await axios.get(ENDPOINTS.AUTH.ME, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
         });
         const userId = response.data.id;
@@ -50,8 +50,8 @@ export default function UserProfile() {
   }, [userProfile]);
 
   const LogOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
     window.location.href = "/";
   };
 
@@ -75,7 +75,7 @@ export default function UserProfile() {
         formDataToSend,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -90,7 +90,7 @@ export default function UserProfile() {
   const handleDeleteAccount = async () => {
     try {
       await dispatch(deleteUserAccount(userProfile.id));
-      localStorage.clear();
+      sessionStorage.clear();
       window.location.href = "/";
     } catch (err) {
       console.error("Failed to delete account:", err);
