@@ -64,11 +64,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'optimalDonor.middleware.ForceDomainMiddleware',
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://localhost:8000",
 ]
 
 REST_FRAMEWORK = {
@@ -123,13 +125,13 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = f"Optimal Donor <{os.getenv('EMAIL_HOST_USER')}>"
 
 # Optimal donor domain settings
-SITE_DOMAIN = "optimaldonor.com"
+SITE_DOMAIN = "localhost:5173"  # Update to the frontend's domain and port
 SITE_NAME = "Optimal Donor"
 
 DJOSER = {
     "USER_ID_FIELD": "email",
     "LOGIN_FIELD": "email",
-    'DOMAIN':SITE_DOMAIN,
+    'DOMAIN': 'localhost:5173',
     'PASSWORD_RESET_CONFIRM_RETYPE':True,
     'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
