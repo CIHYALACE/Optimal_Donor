@@ -1,18 +1,35 @@
-import Card5 from "./Card5";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCampaigns } from "../store/slices/campaignsSlice";
 import Card6 from "./Card6";
+import "../style/Slider.css"; // Add a custom CSS file for styling
 
 export default function Slider() {
+  const dispatch = useDispatch();
+  const { campaigns, loading, error } = useSelector((state) => state.campaigns);
+
+  useEffect(() => {
+    dispatch(fetchCampaigns());
+  }, [dispatch]);
+
+  if (loading) {
+    return <p className="text-center my-5">Loading campaigns...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center text-danger my-5">Error: {error}</p>;
+  }
+
   return (
-    <>
-      <div className="container my-5">
+    <div id="slider-section" className="slider-container py-5">
+      <div className="container">
         <div className="card-carousel border-0 shadow-none">
-          <div
-            id="cardSlider"
-            className="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div className="carousel-controls d-flex justify-content-between align-items-center border-0 gap-3 my-3 bg-white">
-              <h4 className="gidole-regular">Discover fundraisers inspired by what you care about</h4>
+          <div id="cardSlider" className="carousel slide" data-bs-ride="carousel">
+            {/* Carousel Controls */}
+            <div className="carousel-controls d-flex justify-content-between align-items-center border-0 gap-3 my-3">
+              <h4 className="gidole-regular text-dark ">
+                Discover fundraisers inspired by what you care about
+              </h4>
               <div className="d-flex gap-2">
                 <button
                   className="custom-carousel-btn"
@@ -32,115 +49,48 @@ export default function Slider() {
                 </button>
               </div>
             </div>
+
+            {/* Carousel Indicators */}
+            <div className="carousel-indicators">
+              {campaigns.map((_, index) => (
+                <button
+                  type="button"
+                  data-bs-target="#cardSlider"
+                  data-bs-slide-to={index}
+                  className={index === 0 ? "active" : ""}
+                  aria-current={index === 0 ? "true" : undefined}
+                  aria-label={`Slide ${index + 1}`}
+                  key={index}
+                ></button>
+              ))}
+            </div>
+
+            {/* Carousel Items */}
             <div className="carousel-inner">
-              <div className="carousel-item active">
-                <div className="carousel-card">
-                  <div className="row">
-                    <Card5
-                      title="Campiagns1"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/palistine_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
+              {campaigns.map((campaign, index) => (
+                <div
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                  key={campaign.id}
+                >
+                  <div className="carousel-card">
+                    <div className="row justify-content-center">
+                      <Card6
+                        title={campaign.title}
+                        text={campaign.description}
+                        imgSrc={
+                          campaign.images?.[0]?.image || "/default_image.jpg"
+                        }
+                        totalAmount={campaign.goal_amount}
+                        currentAmount={campaign.raised_amount}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="carousel-item">
-                <div className="carousel-card">
-                  <div className="row">
-                    <Card5
-                      title="Campiagns1"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/palistine_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="carousel-item">
-                <div className="carousel-card">
-                  <div className="row">
-                    <Card5
-                      title="Campiagns1"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/palistine_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                    <Card6
-                      title="Campiagns2"
-                      text="This is a wider card with supporting text below as a natural lead-in to additional content."
-                      imgSrc="/prison_card.jpg"
-                      totalAmount="1000"
-                      currentAmount="500"
-                    />
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

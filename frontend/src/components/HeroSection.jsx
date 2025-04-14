@@ -1,8 +1,8 @@
 export default function HeroSection() {
   return (
     <>
-      <div className="hero vh-100 mt-4 mt-lg-3">
-        <div className="hero-content text-center d-flex flex-column flex-lg-row justify-content-center align-items-start">
+      <div className="hero vh-100">
+        <div className="hero-content mt-5 text-center d-flex flex-column flex-lg-row justify-content-center align-items-start">
           {/* left side */}
           <div className="d-none d-lg-flex flex-column justify-center align-items-end gap-5 gap-lg-0">
             <div className="d-flex flex-column justify-center align-items-center align-items-lg-end">
@@ -39,12 +39,19 @@ export default function HeroSection() {
 
           </div>
 
-          <div className="d-flex flex-column justify-content-center align-items-center col-12 col-lg-6">
-            <p className="pt-md-5 fs-5">#1 crowdfunding platform</p>
-            <h1 className="font-bold my-4 my-lg-3 px-3 px-lg-0 col-md-7 gidole-regular">
+          <div className=" d-flex flex-column justify-content-center align-items-center col-12 col-lg-6">
+            <p className="pt-md-5 fs-1 fw-bold ">#1 crowdfunding platform</p>
+            <h1 className="fw-bold fs-3 my-4 my-lg-3 px-3 px-lg-0 col-md-7 gidole-regular">
               Alone we can do so little; Together we can do so much.
             </h1>
-            <a href="#" className="btn btn-success col-5 col-md-4 my-lg-5 ">
+            <a
+              href="#slider-section"
+              className="btn btn-success col-5 col-md-4 my-lg-5"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default anchor behavior
+                document.getElementById("slider-section").scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Get Started
             </a>
           </div>
