@@ -21,7 +21,7 @@ A comprehensive crowdfunding platform built with Django and React that connects 
   - Campaign progress visualization    
 
 
-  
+
 
 - **Social Features**
   - Comments and discussions
@@ -141,13 +141,14 @@ pnpm test
 The API documentation is available at `/api/docs/` when running the development server.
 
 ## 👥 Team Members
-
-- Ahmed Soliman - CEO & Founder
+- Josephine  - CEO & Founder 
 - AbdelRahman Youssef - Chief Operations Officer
 - Hosam Semry - Chief Technology Officer
 - Mohamed Loay - Community Outreach Director
+- Ahmed Soliman - partner 
 - Amr Hosam - Community Outreach Director
 - Mona Ali - Supervisor
+
 
 ## 📄 License
 
