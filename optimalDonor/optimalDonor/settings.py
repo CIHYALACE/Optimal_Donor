@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-vtj$1lm7ed3o89x7&)wwcc%nu5!uii2shm1n%jh$0e)))qr6&9
 DEBUG = True
 
 ALLOWED_HOSTS = []
+FRONTEND_URL = 'http://127.0.0.1:5173'
 
 #setting of token time
 SIMPLE_JWT = {
@@ -88,7 +89,7 @@ ROOT_URLCONF = 'optimalDonor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'users' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +132,7 @@ SITE_NAME = "Optimal Donor"
 DJOSER = {
     "USER_ID_FIELD": "email",
     "LOGIN_FIELD": "email",
-    'DOMAIN': 'localhost:5173',
+    'DOMAIN':SITE_DOMAIN,
     'PASSWORD_RESET_CONFIRM_RETYPE':True,
     'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
@@ -149,7 +150,10 @@ DJOSER = {
         # 'user_delete':'djoser.serializers.UserDeleteSerializer',
         'current_user': 'users.serializers.CustomUserSerializer',
     },
-
+    'EMAIL': {
+        'activation': 'users.email.CustomActivationEmail',
+        'password_reset': 'users.email.CustomPasswordResetEmail',
+    },
 }
 
 # Password validation
