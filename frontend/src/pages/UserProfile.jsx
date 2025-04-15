@@ -21,7 +21,7 @@ export default function UserProfile() {
       try {
         const response = await axios.get(ENDPOINTS.AUTH.ME, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
         });
         const userId = response.data.id;
@@ -50,8 +50,8 @@ export default function UserProfile() {
   }, [userProfile]);
 
   const LogOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
     window.location.href = "/";
   };
 
@@ -75,7 +75,7 @@ export default function UserProfile() {
         formDataToSend,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -90,7 +90,7 @@ export default function UserProfile() {
   const handleDeleteAccount = async () => {
     try {
       await dispatch(deleteUserAccount(userProfile.id));
-      localStorage.clear();
+      sessionStorage.clear();
       window.location.href = "/";
     } catch (err) {
       console.error("Failed to delete account:", err);
@@ -287,6 +287,7 @@ export default function UserProfile() {
         </Button>
       </div>
 
+<<<<<<< HEAD
       {userProfile?.created_campaigns?.filter(campaign => campaign.is_published).length > 0 ? (
   <div className="row row-cols-1 row-cols-md-2 g-4">
     {userProfile.created_campaigns
@@ -306,6 +307,61 @@ export default function UserProfile() {
               >
                 {campaign.status || "Active"}
               </Badge>
+=======
+      {userProfile?.created_campaigns?.length > 0 ? (
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {userProfile.created_campaigns.map((campaign) => (
+            <div key={campaign.id} className="col">
+              <Card className="h-100">
+                <div className="position-relative">
+                  <Card.Img 
+                    variant="top" 
+                    src={campaign.image?.images?.[0]?.image || "/cancer_card.jpg"}
+                    style={{ height: "140px", objectFit: "cover" }}
+                  />
+                  <Badge 
+                    bg={campaign.status === "active" ? "success" : "secondary"}
+                    className="position-absolute top-0 end-0 m-2"
+                  >
+                    {campaign.status || "Active"}
+                  </Badge>
+                </div>
+
+                <Card.Body>
+                  <Card.Title>{campaign.title}</Card.Title>
+                  <Card.Text className="text-muted small">
+                    {(campaign.description || "No description provided").substring(0, 80)}...
+                  </Card.Text>
+
+                  <div className="progress mb-2" style={{ height: "8px" }}>
+                    <div 
+                      className="progress-bar bg-success" 
+                      style={{ width: `${campaign.progress || 30}%` }}
+                      role="progressbar"
+                      aria-valuenow={campaign.progress || 30}
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    />
+                  </div>
+
+                  <div className="d-flex justify-content-between small text-muted">
+                    <span>${campaign.raised_amount || 0} raised</span>
+                    <span>Goal: ${campaign.goal_amount || 1000}</span>
+                  </div>
+                </Card.Body>
+
+                <Card.Footer className="bg-white border-top-0">
+                  <Button 
+                    variant="outline-success" 
+                    size="sm" 
+                    className="w-100"
+                    href={`/campaigns/${campaign.id}`}
+                  >
+                    View Campaign
+                  </Button>
+                </Card.Footer>
+              </Card>
+>>>>>>> refs/remotes/origin/main
             </div>
 
             <Card.Body>

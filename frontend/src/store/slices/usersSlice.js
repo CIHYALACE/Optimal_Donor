@@ -59,7 +59,7 @@ export const deleteUserAccount = createAsyncThunk(
     try {
       const response = await axios.delete(`${ENDPOINTS.USERS}/${userId}/`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
         },
       });
       return response.data;

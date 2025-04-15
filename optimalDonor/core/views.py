@@ -28,7 +28,6 @@ class CampaignViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
     def perform_destroy(self, instance):
-        # Check if the user is the owner of the campaign
         if instance.owner != self.request.user:
             raise PermissionDenied("You do not have permission to delete this campaign.")
         instance.is_published = False

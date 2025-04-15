@@ -7,7 +7,7 @@ export const loadUser = createAsyncThunk(
   "auth/loadUser",
   async (_, thunkAPI) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (!token) return thunkAPI.rejectWithValue("No token found");
 
       const response = await axios.get(`${BASE_URL}/users/me/`, {
@@ -28,8 +28,8 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post(ENDPOINTS.AUTH.TOKEN, credentials);
       // Store tokens in local storage
-      localStorage.setItem("accessToken", response.data.access);
-      localStorage.setItem("refreshToken", response.data.refresh);
+      sessionStorage.setItem("accessToken", response.data.access);
+      sessionStorage.setItem("refreshToken", response.data.refresh);
 
       // Set default authorization header for all future requests
       axios.defaults.headers.common[
@@ -66,8 +66,8 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       // Clear tokens from local storage
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
 
       // Remove authorization header
       delete axios.defaults.headers.common["Authorization"];
@@ -82,7 +82,7 @@ export const logoutUser = createAsyncThunk(
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async (_, { rejectWithValue }) => {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshToken = sessionStorage.getItem("refreshToken");
     if (!refreshToken) {
       return rejectWithValue("No refresh token available");
     }
@@ -91,7 +91,7 @@ export const refreshToken = createAsyncThunk(
       const response = await axios.post(ENDPOINTS.AUTH.REFRESH, {
         refresh: refreshToken,
       });
-      localStorage.setItem("accessToken", response.data.access);
+      sessionStorage.setItem("accessToken", response.data.access);
 
       // Update authorization header
       axios.defaults.headers.common[
@@ -101,8 +101,8 @@ export const refreshToken = createAsyncThunk(
       return response.data;
     } catch (error) {
       // If refresh token is invalid, log the user out
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
       delete axios.defaults.headers.common["Authorization"];
 
       return rejectWithValue(
@@ -163,13 +163,13 @@ export const resetPasswordConfirm = createAsyncThunk(
 // Initialize auth state
 const initialState = {
   user: null,
-  isAuthenticated: !!localStorage.getItem("accessToken"),
+  isAuthenticated: !!sessionStorage.getItem("accessToken"),
   loading: false,
   error: null,
 };
 
 // Setup axios with stored token if it exists
-const token = localStorage.getItem("accessToken");
+const token = sessionStorage.getItem("accessToken");
 if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
