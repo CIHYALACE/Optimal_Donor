@@ -18,27 +18,12 @@ A comprehensive crowdfunding platform built with Django and React that connects 
 - **Donation System**
   - Secure donation processing
   - Donation history and tracking
-  - Campaign progress visualization    
+  - Campaign progress visualization
 
 
-<<<<<<< HEAD
-
-
-- **Social Features**
-  - Comments and discussions
-  - Rating system
-  - Content moderation with reporting system
-
-- **Admin Features**
-  - Campaign approval system
-  - User management
-  - Content moderation
-  - Analytics and reporting
-=======
 - **Admin Features**
   - User management
   - Content moderation
->>>>>>> refs/remotes/origin/main
 
 ## 🔧 Technology Stack
 
@@ -147,29 +132,13 @@ pnpm test
 The API documentation is available at `/api/docs/` when running the development server.
 
 ## 👥 Team Members
-<<<<<<< HEAD
-- Josephine  - CEO & Founder 
-- AbdelRahman Youssef - Chief Operations Officer
-- Hosam Semry - Chief Technology Officer
-- Mohamed Loay - Community Outreach Director
-- Ahmed Soliman - partner 
-- Amr Hosam - Community Outreach Director
-- Mona Ali - Supervisor
-
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-=======
-- AbdelRahman Youssef 
-- Hosam Semry 
-- Mohamed Loay 
-- Ahmed Soliman 
+- AbdelRahman Youssef
+- Hosam Semry
+- Mohamed Loai
+- Ahmed Soliman
 - Amr Hosam
 
 
->>>>>>> refs/remotes/origin/main
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -177,12 +146,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-<<<<<<< HEAD
-
-## 📞 Contact
-
-For any inquiries, please reach out to:
-- Email: abodyoussef2015@gmail.com
-- Phone: +020 10 279 833 79
-=======
->>>>>>> refs/remotes/origin/main
