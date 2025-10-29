@@ -1,4 +1,4 @@
-export default function Card3({name, icon, id}) {
+export default function CategoryNavigationCard({name, icon, id}) {
     return (
         <div className="col-2 text-center d-flex flex-column align-items-center">
             <a 

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { fetchCampaigns } from "../store/slices/campaignsSlice";
-import Card1 from "./Card1";
-import Card2 from "./Card2";
+import { fetchCampaigns } from "../../store/slices/campaignsSlice";
+import FeaturedCampaignCard from "../cards/FeaturedCampaignCard";
 
 export default function TopicsSection() {
     const dispatch = useDispatch();
@@ -37,23 +36,14 @@ export default function TopicsSection() {
                                 ? campaign.images[0].image
                                 : "/default_image.jpg";
 
-                            return index === 0 ? (
-                                <Card1
+                            return (
+                                <FeaturedCampaignCard
                                     key={campaign.id}
                                     title={campaign.title}
                                     text={campaign.description}
                                     imgSrc={imgSrc}
                                     action="Donate Now"
                                     onActionClick={() => handleDonateNow(campaign.id)} // Pass the handler
-                                />
-                            ) : (
-                                <Card2
-                                key={campaign.id}
-                                title={campaign.title}
-                                text={campaign.description}
-                                imgSrc={imgSrc}
-                                action="Donate Now"
-                                onActionClick={() => handleDonateNow(campaign.id)}  // Pass the handler
                                 />
                             );
                         })

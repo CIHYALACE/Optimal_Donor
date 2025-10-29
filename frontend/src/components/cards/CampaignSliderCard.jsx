@@ -1,7 +1,7 @@
 import React from "react";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../ui/ProgressBar";
 
-export default function Card6({title, text, imgSrc, totalAmount, currentAmount}) {
+export default function CampaignSliderCard({title, text, imgSrc, totalAmount, currentAmount}) {
   return (
     <>
       <div className="card bg-inherit border-0 flex-md-nowrap text-white m-md-0 mb-3 col-12 col-md-4">

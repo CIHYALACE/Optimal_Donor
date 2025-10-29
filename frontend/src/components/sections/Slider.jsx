@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCampaigns } from "../store/slices/campaignsSlice";
-import Card6 from "./Card6";
-import "../style/Slider.css"; // Add a custom CSS file for styling
+import { fetchCampaigns } from "../../store/slices/campaignsSlice";
+import CampaignSliderCard from "../cards/CampaignSliderCard";
+import "../../style/Slider.css"; // Add a custom CSS file for styling
 
 export default function Slider() {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ export default function Slider() {
                 >
                   <div className="carousel-card">
                     <div className="row justify-content-center">
-                      <Card6
+                      <CampaignSliderCard
                         title={campaign.title}
                         text={campaign.description}
                         imgSrc={

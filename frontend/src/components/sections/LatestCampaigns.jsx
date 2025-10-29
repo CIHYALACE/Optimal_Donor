@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLatestCampaigns } from "../store/slices/latestCampaignsSlice";
-import Card1 from "./Card1";
-import Card2 from "./Card2";
+import { fetchLatestCampaigns } from "../../store/slices/latestCampaignsSlice";
+import FeaturedCampaignCard from "../cards/FeaturedCampaignCard";
 
 export default function LatestCampaigns() {
     const dispatch = useDispatch();
@@ -34,16 +33,8 @@ export default function LatestCampaigns() {
                             ? campaign.images[0].image
                             : "/default_image.jpg";
 
-                        return index === 0 ? (
-                            <Card1
-                                key={campaign.id}
-                                title={campaign.title}
-                                text={campaign.description}
-                                imgSrc={imgSrc}
-                                action="Donate Now"
-                            />
-                        ) : (
-                            <Card2
+                        return (
+                            <FeaturedCampaignCard
                                 key={campaign.id}
                                 title={campaign.title}
                                 text={campaign.description}

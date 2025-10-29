@@ -1,8 +1,7 @@
 import React from 'react'
-import ProgressBar from './ProgressBar'
+import ProgressBar from '../ui/ProgressBar'
 
-export default function Card5({ title, text, imgSrc, totalAmount , currentAmount }) {
-
+export default function CampaignDetailCard({ title, text, imgSrc, totalAmount, currentAmount }) {
     return (
       <>
         <div className="card mb-3 col-12 bg-white border-0">
@@ -22,5 +21,4 @@ export default function Card5({ title, text, imgSrc, totalAmount , currentAmount
         </div>
       </>
     );
-  }
-  
+}

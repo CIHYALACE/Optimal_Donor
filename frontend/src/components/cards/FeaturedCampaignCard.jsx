@@ -1,4 +1,4 @@
-export default function Card1({ title, text, imgSrc, action, onActionClick }) {
+export default function FeaturedCampaignCard({ title, text, imgSrc, action, onActionClick }) {
   return (
     <>
       <div
@@ -14,7 +14,7 @@ export default function Card1({ title, text, imgSrc, action, onActionClick }) {
               style={{
                 width: "100%",
                 height: "200px",
-                padding:"5px",
+                padding: "5px",
                 objectFit: "cover",
                 borderTopLeftRadius: "10px",
                 borderBottomLeftRadius: "10px",
@@ -25,7 +25,7 @@ export default function Card1({ title, text, imgSrc, action, onActionClick }) {
             <div className="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 className="card-title text-success fw-bold">{title}</h5>
-                <p className="card-text text-dark fw-bold ">{text}</p>
+                <p className="card-text text-dark fw-bold">{text}</p>
               </div>
               <button
                 className="btn btn-outline-success mt-3 fw-bold"

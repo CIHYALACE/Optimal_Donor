@@ -1,8 +1,8 @@
-import Card3 from "../components/Card3";
+import CategoryNavigationCard from "../components/cards/CategoryNavigationCard";
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampaigns } from '../store/slices/campaignsSlice';
-import CampaignsSection from '../components/CampaignsSection';
+import CampaignsSection from '../components/sections/CampaignsSection';
 import { useLocation } from "react-router-dom";
 
 
@@ -98,7 +98,7 @@ export default function CampaignsPage() {
         <>
           <div className="d-flex justify-content-between align-items-center gap-0 mt-5 flex-wrap">
             {uniqueCategories.map(category => (
-              <Card3 
+              <CategoryNavigationCard 
                 key={category.id}
                 id={`#${category.id}`}
                 name={category.name}

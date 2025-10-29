@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampaignById, donateToCampaign, deleteCampaign } from '../store/slices/campaignsSlice';
-import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/ui/ProgressBar';
 import Swal from 'sweetalert2';
 
 export default function CampaignDetailsPage() {

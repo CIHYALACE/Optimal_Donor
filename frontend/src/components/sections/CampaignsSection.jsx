@@ -1,4 +1,4 @@
-import Card4 from "./Card4";
+import CampaignListCard from "../cards/CampaignListCard";
 
 export default function CampaignsSection({ name, campaigns = [] }) {
   // Display a message if no campaigns are available for this category
@@ -19,7 +19,7 @@ export default function CampaignsSection({ name, campaigns = [] }) {
       <h1 className="fs-3 fw-bold gidole-regular mt-5">{name}</h1>
       <div className="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center">
         {displayCampaigns.map(campaign => (
-          <Card4
+          <CampaignListCard
             key={campaign.id}
             image={campaign.images && campaign.images.length > 0 
               ? campaign.images[0].image 

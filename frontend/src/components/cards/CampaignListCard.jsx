@@ -1,6 +1,7 @@
 import React from 'react'
-import ProgressBar from './ProgressBar'
-export default function Card4({image , title , totalAmount , currentAmount , link}) {
+import ProgressBar from '../ui/ProgressBar'
+
+export default function CampaignListCard({image, title, totalAmount, currentAmount, link}) {
     return (
         <>
             <a href={link} className="card m-2 col-12 col-md-4">
