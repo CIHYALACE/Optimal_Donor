@@ -110,24 +110,12 @@ export default function RegisterPage() {
   return (
     <>
       <section className="h-100 bg-light">
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="container py-5 h-100 d-flex justify-content-center align-items-center">
+          <div className="row d-flex justify-content-center align-items-center h-100" style={{minWidth:"70%"}}>
             <div className="col">
               <div className="card card-registration my-4 shadow-sm border-top border-success border-2">
                 <div className="row g-0">
-                  <div className="col-xl-6 d-none d-xl-block">
-                    <img
-                      src="https://images.pexels.com/photos/6591166/pexels-photo-6591166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                      alt="Donation"
-                      className="img-fluid h-100"
-                      style={{
-                        borderTopLeftRadius: '.25rem',
-                        borderBottomLeftRadius: '.25rem',
-                        objectFit: 'cover'
-                      }}
-                    />
-                  </div>
-                  <div className="col-xl-6">
+                  <div className="col-12">
                     <div className="card-body p-md-5 text-black">
                       <h3 className="mb-4 text-uppercase fw-bold text-success">
                         Create Account
@@ -237,7 +225,7 @@ export default function RegisterPage() {
                         <div className="d-flex justify-content-between align-items-center pt-3">
                           <button
                             type="submit"
-                            className="btn btn-success btn-lg"
+                            className="btn btn-success me-3"
                             disabled={loading || registrationSuccess}
                           >
                             {loading ? (
@@ -247,7 +235,7 @@ export default function RegisterPage() {
                               </>
                             ) : 'Register'}
                           </button>
-                          <p className="small fw-bold mt-2 pt-1 mb-0">
+                          <p className="small fw-bold mb-0">
                             Already have an account? <Link to="/login" className="text-success">Sign In</Link>
                           </p>
                         </div>
