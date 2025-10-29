@@ -17,9 +17,9 @@ export default function Header() {
         }
     };
   return (
-    <Navbar expand="lg" className="bg-body-tertiary position-sticky top-0 z-1">
+    <Navbar expand="lg" className="bg-dark position-sticky top-0 z-1">
       <Container>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor:"white"}} />
         <Navbar.Brand href="\" className="font-weight-bold fs-md-3 fw-bold big-shoulders d-flex align-items-center flex-row gap-2">
           <img
             alt=""
@@ -35,11 +35,11 @@ export default function Header() {
         </NavLink>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto fw-bold">
-            <Nav.Link className="nav-link" href="\">Home</Nav.Link>
-            <Nav.Link className="nav-link" href="/about">About</Nav.Link>
-            <Nav.Link className={"nav-link"} href="/campaigns">Campaigns</Nav.Link>
-            <Nav.Link className="nav-link" href="#contact-section">Contact</Nav.Link>
-            <form className="d-flex ms-auto" onSubmit={handleSearch}>
+            <Nav.Link className="nav-link text-light" href="\">Home</Nav.Link>
+            <Nav.Link className="nav-link text-light" href="/about">About</Nav.Link>
+            <Nav.Link className="nav-link text-light" href="/campaigns">Campaigns</Nav.Link>
+            <Nav.Link className="nav-link text-light me-2" href="#contact-section">Contact</Nav.Link>
+            <form className="d-flex" onSubmit={handleSearch}>
                     <input
                         type="text"
                         className="form-control me-2"
