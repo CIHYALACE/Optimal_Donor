@@ -77,25 +77,14 @@ export default function LoginPage() {
   return (
     <>
       <section className="h-100 bg-light">
-        <div className="container py-5 h-100">
+        <div className="container py-5 h-100 d-flex justify-content-center align-items-center">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col">
               <div className="card card-registration my-4 shadow-sm border-top border-success border-2">
                 <div className="row g-0">
-                  <div className="col-xl-6 d-none d-xl-block">
-                    <img
-                      src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
-                      alt="Donation"
-                      className="img-fluid h-100"
-                      style={{
-                        borderTopLeftRadius: ".25rem",
-                        borderBottomLeftRadius: ".25rem",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                  <div className="col-xl-6">
-                    <div className="card-body p-md-5 text-black">
+
+                  <div className="col-xl-12">
+                    <div className="card-body p-md-5 text-black" style={{boxShadow: "0 4px 20px rgba(0,0,0,0.2)"}}>
                       <h3 className="mb-4 text-uppercase fw-bold text-success">
                         Sign In
                       </h3>
@@ -163,7 +152,7 @@ export default function LoginPage() {
                         <div className="d-flex justify-content-between align-items-center pt-3">
                           <button
                             type="submit"
-                            className="btn btn-success btn-lg"
+                            className="btn btn-success"
                             disabled={loading}
                           >
                             {loading ? (
@@ -179,7 +168,7 @@ export default function LoginPage() {
                               "Sign In"
                             )}
                           </button>
-                          <p className="small fw-bold mt-2 pt-1 mb-0">
+                          <p className="small fw-bold mb-0">
                             Don't have an account?{" "}
                             <Link to="/register" className="text-success">
                               Register
