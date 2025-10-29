@@ -10,7 +10,7 @@ export default function Footer() {
             style={{ backgroundColor: "#198754" }}
           >
             <div className="me-5">
-              <span>Get connected with us on social networks:</span>
+              <span>Get connected with us on Social Media:</span>
             </div>
 
             <div>
@@ -49,45 +49,13 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    Here you can use rows and columns to organize your footer
-                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit.
+                    We believe that everyone has the power to make a difference. Join us in promoting social change and supporting causes that matter to you.
                   </p>
                 </div>
 
-                <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                  <h6 className="text-uppercase fw-bold">Products</h6>
-                  <hr
-                    className="mb-4 mt-0 d-inline-block mx-auto"
-                    style={{
-                      width: "60px",
-                      backgroundColor: "#f40006",
-                      height: "2px",
-                    }}
-                  />
-                  <p>
-                    <a href="#!" className="text-white">
-                      Online Couching
-                    </a>
-                  </p>
-                  <p>
-                    <a href="#!" className="text-white">
-                      Training Program
-                    </a>
-                  </p>
-                  <p>
-                    <a href="#!" className="text-white">
-                      Meal Plans
-                    </a>
-                  </p>
-                  <p>
-                    <a href="#!" className="text-white">
-                      Trainers
-                    </a>
-                  </p>
-                </div>
 
-                <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                   <h6 className="text-uppercase fw-bold">Useful links</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
@@ -97,11 +65,6 @@ export default function Footer() {
                       height: "2px",
                     }}
                   />
-                  <p>
-                    <a href="#!" className="text-white">
-                      Home
-                    </a>
-                  </p>
                   <p>
                     <a href="#!" className="text-white">
                       About
@@ -119,7 +82,7 @@ export default function Footer() {
                   </p>
                 </div>
 
-                <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <div className="col-md-4 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4">
                   <h6 className="text-uppercase fw-bold">Contact</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
@@ -138,9 +101,6 @@ export default function Footer() {
                   <p>
                     <i className="fas fa-phone mr-3"></i> +020 10 279 833 79
                   </p>
-                  <p>
-                    <i className="fas fa-print mr-3"></i> +020 10 279 833 79
-                  </p>
                 </div>
               </div>
             </div>
@@ -150,10 +110,8 @@ export default function Footer() {
             className="text-center p-3"
             style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            © 2020 Copyright:
-            <a className="text-white" href="#">
-              Fit Connect
-            </a>
+            © 2024 Copyright: Optimal Donor
+            
           </div>
         </footer>
       </div>
